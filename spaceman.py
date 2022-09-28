@@ -1,5 +1,9 @@
 import random
 
+#space for variables? are they getting nested or sitting up top?
+
+
+
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -27,10 +31,18 @@ def is_word_guessed(secret_word, letters_guessed):
     Returns: 
         bool: True only if all the letters of secret_word are in letters_guessed, False otherwise
     '''
-    # TODO: Loop through the letters in the secret_word and check if a letter is not in lettersGuessed
-    pass
+    for i in range(len(secret_word)):
+        if secret_word[i] in letters_guessed:
+            user_guess += secret_word[i]
+    if secret_word == user_guess:
+        return True
+    else: 
+        return False
+
 
 def get_guessed_word(secret_word, letters_guessed):
+    underscore = '_' * len(secret_word)
+    
     '''
     A function that is used to get a string showing the letters guessed so far in the secret word and underscores for letters that have not been guessed yet.
 
@@ -42,9 +54,8 @@ def get_guessed_word(secret_word, letters_guessed):
         string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.  For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
 
-    #TODO: Loop through the letters in secret word and build a string that shows the letters that have been guessed correctly so far that are saved in letters_guessed and underscores for the letters that have not been guessed yet
+    
 
-    pass
 
 
 def is_guess_in_word(guess, secret_word):
@@ -59,11 +70,12 @@ def is_guess_in_word(guess, secret_word):
         bool: True if the guess is in the secret_word, False otherwise
 
     '''
-    #TODO: check if the letter guess is in the secret word
-
-    pass
-
-
+    if guess in secret_word:
+        print('Yay! You guessed right! Keep going.')
+        return True
+    else:
+        print("Aww, that guess wasn't part of the word. Try again!")
+        return False 
 
 
 def spaceman(secret_word):
