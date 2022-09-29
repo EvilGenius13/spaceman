@@ -1,9 +1,10 @@
 import random
 
-#space for variables? are they getting nested or sitting up top?
+user_guess = ''
+guesses = ''
 
 
-
+##                                          READY TO GO
 def load_word():
     '''
     A function that reads a text file of words and randomly selects one to use as the secret word
@@ -19,7 +20,7 @@ def load_word():
     words_list = words_list[0].split(' ') #comment this line out if you use a words.txt file with each word on a new line
     secret_word = random.choice(words_list)
     return secret_word
-
+##                                          READY TO GO
 def is_word_guessed(secret_word, letters_guessed):
     '''
     A function that checks if all the letters of the secret word have been guessed.
@@ -53,11 +54,11 @@ def get_guessed_word(secret_word, letters_guessed):
     Returns: 
         string: letters and underscores.  For letters in the word that the user has guessed correctly, the string should contain the letter at the correct position.  For letters in the word that the user has not yet guessed, shown an _ (underscore) instead.
     '''
-
     
+   
 
 
-
+##                                          READY TO GO
 def is_guess_in_word(guess, secret_word):
     '''
     A function to check if the guessed letter is in the secret word
@@ -86,17 +87,18 @@ def spaceman(secret_word):
       secret_word (string): the secret word to guess.
 
     '''
+    guesses = 0
+    letters_guessed = ['']
 
+    print('WHOOOOOOOOOOOOOOOSSSSSHHHHHHHHH')
+    print("Welcome to Spaceman. It's time to fly, or crash...")
+    print("Your goal is to guess the secret word letter by letter. (Think knockoff wheel of fortune)")
+    print("You have 7 guesses. Let's go to space!")
 
-    #TODO: show the player information about the game according to the project spec
+    game_state = True
 
-    #TODO: Ask the player to guess one letter per round and check that it is only one letter
+    while game_state:
 
-    #TODO: Check if the guessed letter is in the secret or not and give the player feedback
-
-    #TODO: show the guessed word so far
-
-    #TODO: check if the game has been won or lost
 
 
 
