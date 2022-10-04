@@ -1,8 +1,32 @@
 import random
 
 def ascii(times_wrong_answer):
-    ascii_dynamite = [ '7', '6', '5', '4', '3', '2', '1', 'EXPLODE']
-    return times_wrong_answer
+    ascii_dynamite = ['''
+___________________   
+(________TNT_______|~~~~~~~X ''', '''
+___________________   
+(________TNT_______|~~~~~~X''', '''
+___________________   
+(________TNT_______|~~~~~X''', '''
+___________________   
+(________TNT_______|~~~X''', '''
+___________________   
+(________TNT_______|~~X''', '''
+___________________   
+(________TNT_______|~X''', '''
+___________________   
+(________TNT_______|X''', '''
+          _ ._  _ , _ ._
+        (_ ' ( `  )_  .__)
+      ( (  (    )   `)  ) _)
+     (__ (_   (_ . _) _) ,__)
+         `~~`\ ' . /`~~`
+              ;   ;
+              /   \
+_____________/_ __ \_____________'''
+]
+    print(ascii_dynamite[times_wrong_answer])
+    return
 
 ##                                          READY TO GO
 def load_word():
@@ -53,8 +77,9 @@ def is_guess_in_word(guess, secret_word):
     if guess in secret_word:
         print("Yes Cadet! Keep Going!")
         return True
-    print("Oh no! Try again!")
-    return False 
+    else:
+        print("Oh no! Try again!")
+        return False 
     
     
     """
@@ -105,7 +130,7 @@ def spaceman(secret_word):
         print("Let's play!")
    
 
-    while guesses_left > 0:
+    while guesses_left != 0:
         print(f"You are down to {guesses_left} guesses.")
         game_state = True
 
@@ -123,10 +148,10 @@ def spaceman(secret_word):
 
         if not is_guess_in_word(guess, secret_word):
             guesses_left -= 1
-            #times_wrong_answer += 1
-            print("Add wrong Ascii here.")
+            times_wrong_answer += 1
+            ascii(times_wrong_answer)
         else:
-            print("Continuing with same Ascii")
+            ascii(times_wrong_answer)
 
         print(get_guessed_word(secret_word, letters_guessed))
 
@@ -145,5 +170,3 @@ secret_word = load_word()
 spaceman(secret_word)
 
 
-# ___________________   
-# (________TNT_______|~~~~~~~X
