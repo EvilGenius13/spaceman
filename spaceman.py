@@ -1,3 +1,4 @@
+from curses.ascii import isdigit
 import random
 
 def ascii(times_wrong_answer):
@@ -22,7 +23,7 @@ ___________________
      (__ (_   (_ . _) _) ,__)
          `~~`\ ' . /`~~`
               ;   ;
-              /   \
+              /   \\
 _____________/_ __ \_____________'''
 ]
     print(ascii_dynamite[times_wrong_answer])
@@ -73,12 +74,14 @@ def get_guessed_word(secret_word, letters_guessed):
    
 ##                                          READY TO GO
 def is_guess_in_word(guess, secret_word):
-    
+    green = '\033[1;92m' 
+    red = '\033[1;91m'
+
     if guess in secret_word:
-        print("Yes Cadet! Keep Going!")
+        print(f"{green}Yes Cadet! Keep Going!")
         return True
     else:
-        print("Oh no! Try again!")
+        print(f"{red}Oh no! Try again!")
         return False 
     
     
@@ -108,6 +111,12 @@ def spaceman(secret_word):
     guesses_left = 7
     letters_guessed = ''
     times_wrong_answer = 0
+    yellow = '\033[0;93m'
+    blue = '\033[1;94m'   
+    green = '\033[1;92m' 
+    red = '\033[1;91m'
+    bold = '\033[1:95m'
+
    
     print("        |")
     print('       / \ ')
@@ -131,20 +140,22 @@ def spaceman(secret_word):
    
 
     while guesses_left != 0:
-        print(f"You are down to {guesses_left} guesses.")
+        print(f"{yellow}You are down to {guesses_left} guesses.")
         game_state = True
 
         while game_state:
 
-            guess = input('Okay Cadet, take a guess: ')
+            guess = input(f'{blue}Okay Cadet, take a guess: ')
             if len(guess) >1:
-                print("One letter at a time Cadet!")
+                print(f"{blue}One letter at a time Cadet!")
+            elif guess.isnumeric() == True:
+                print(f"{blue}You need to pick a letter Cadet")
             elif guess in letters_guessed:
-                print('You already guessed that letter Cadet, pick again!')
+                print(f'{blue}You already guessed that letter Cadet, pick again!')
             else:
                 letters_guessed += guess
                 game_state = False
-                print(f"You've guessed {letters_guessed}")
+                print(f"{green}You've guessed {letters_guessed}")
 
         if not is_guess_in_word(guess, secret_word):
             guesses_left -= 1
@@ -155,9 +166,9 @@ def spaceman(secret_word):
 
         print(get_guessed_word(secret_word, letters_guessed))
 
-        if is_guess_in_word(secret_word, letters_guessed):
+        if is_word_guessed(secret_word, letters_guessed):
             print(f"Promoted Cadet!.. or should I say Corporal. Your word was {secret_word}")
-
+            continue
 
 
     print(f"Time's up! The word was {secret_word}")
