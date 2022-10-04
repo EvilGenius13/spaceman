@@ -72,7 +72,7 @@ def is_guess_in_word(guess, secret_word):
     """
 def new_round():
     play_again = input("Did you want to play again? y/n: ")
-    if play_again.upper == 'Y':
+    if play_again == 'y':
         secret_word = load_word()
         spaceman(secret_word)
         return False
@@ -98,7 +98,7 @@ def spaceman(secret_word):
     
     
     want_instructions = input("Do you want to learn how to play? y/n: ")
-    if want_instructions.upper == 'Y':
+    if want_instructions == 'y':
         print("Your goal is to guess the secret word letter by letter. (Think knockoff wheel of fortune)")
         print("You have 7 guesses. Let's go to space!")
     else:
@@ -106,7 +106,7 @@ def spaceman(secret_word):
    
 
     while guesses_left > 0:
-        print(f"You are down to {guesses_left}")
+        print(f"You are down to {guesses_left} guesses.")
         game_state = True
 
         while game_state:
@@ -121,21 +121,22 @@ def spaceman(secret_word):
                 game_state = False
                 print(f"You've guessed {letters_guessed}")
 
-    if not is_guess_in_word(guess, secret_word):
-        guesses_left -= 1
-        #times_wrong_answer += 1
-        print("Add wrong Ascii here.")
-    else:
-        print("Continuing with same Ascii")
+        if not is_guess_in_word(guess, secret_word):
+            guesses_left -= 1
+            #times_wrong_answer += 1
+            print("Add wrong Ascii here.")
+        else:
+            print("Continuing with same Ascii")
 
-    if is_guess_in_word(secret_word, letters_guessed):
-        print(f"Promoted Cadet!.. or should I say Corporal. Your word was {secret_word}")
+        print(get_guessed_word(secret_word, letters_guessed))
+
+        if is_guess_in_word(secret_word, letters_guessed):
+            print(f"Promoted Cadet!.. or should I say Corporal. Your word was {secret_word}")
 
 
 
-    print(f"Time's up! The word was ${secret_word}")
+    print(f"Time's up! The word was {secret_word}")
     new_round()
-
 
 
 
